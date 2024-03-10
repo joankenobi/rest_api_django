@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders', # permite que el servidor acepte peticiones de otros dominios, por defecto solo acepta peticiones del mismo dominio.
     'rest_framework', # crea api rest practicamente al instante, con cierta seguridad por defecto.
-    'task',
+    'tasks',
 ]
 
 MIDDLEWARE = [
