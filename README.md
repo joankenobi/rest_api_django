@@ -34,7 +34,7 @@ django-admin startproject myproject .
 ```bash
 python manage.py startapp myapp
 ```
- y agregarlo "myapp" en rest_api_django/settings.py en la lista de INSTALLED_APPS en este caso se agregó "task". 
+ y agregarlo "myapp" en rest_api_django/settings.py en la lista de INSTALLED_APPS en este caso se agregó "tasks". 
 
 ## Para correr el proyecto:
 ```bash
