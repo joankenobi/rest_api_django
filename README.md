@@ -69,3 +69,55 @@ CORS_ALLOWED_ORIGINS = [
 ]
 ```
 lista blanca de los dominios que pueden conectarse a nuestro backend.
+
+## Modelado de tabla para guardar los datos:
+
+Django tiene su propio ORM (Object Relational Mapping) que permite modelar las tablas de la base de datos como clases de python.
+
+1. Crear un modelo en myapp/models.py:
+
+```python
+
+from django.db import models
+
+class Task(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True, null=True)
+    completed = models.BooleanField(default=False, blank=True, null=True)
+``` 
+    para que django sepa que hay un nuevo modelo se debe correr el siguiente comando:
+```bash
+ python manage.py makemigrations
+```
+
+    en caso de solo ejecutar las migraciones de la app:
+```bash
+ python manage.py makemigrations myapp
+``` 
+
+2. Aplicar las migraciones:
+```bash
+ python manage.py migrate
+``` 
+con esto ya fue ejecutado el codigo en la carpeta migration y se creó la tabla en la base de datos.
+
+
+## CREAR UN USUARIO ADMINISTRADOR:
+
+1. Crear un superusuario:
+```bash
+ python manage.py createsuperuser (nameuser)
+``` 
+    y seguir las instrucciones.
+
+para probar la api se puede ir a la url http://localhost:8000/admin y loguearse con el usuario creado.
+
+2. Para poder ver la tabla creada en la base de datos se debe registrar el modelo en myapp/admin.py:
+
+```python
+from django.contrib import admin
+from .models import Task
+
+admin.site.register(Task)
+```
+
