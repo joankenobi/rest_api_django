@@ -121,3 +121,58 @@ from .models import Task
 admin.site.register(Task)
 ```
 
+## CREAR UN SERIALIZADOR
+
+Para este paso ya se tiene un modelo para la app que permite manipular datos desde el panel administrador, pero para poder manipular los datos desde la api se debe crear un serializador.
+
+Dentro de la myapp se debe crear un archivo serializers.py:
+
+```python
+from rest_framework import serializers
+from .models import Task
+
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = '__all__'
+```
+El serializador es para indicar que datos van a ser enviados desde el backend y pueden ser convertidos a json.
+
+Django convierte los datos de la base de datos en objetos de python y el serializador los convierte en json.
+
+## CREAR UNA VISTA
+
+Django tiene vistas basadas en clases y vistas basadas en funciones.
+
+Las vistas son funciones que responden algo al cliente.
+
+1. Crear una vista basada en clases en myapp/views.py:
+
+```python
+from rest_framework import viewsets
+from .models import Task
+from .serializers import TaskSerializer
+
+class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+```
+    El viewset es una vista que permite hacer operaciones CRUD (Create, Read, Update, Delete) en la base de datos.
+
+2. Crear una url para la vista en myapp/urls.py:
+    
+    ```python
+    from django.urls import path, include
+
+    from rest_framework.routers import DefaultRouter
+    from .views import TaskViewSet
+
+    router = DefaultRouter()
+    router.register(r'tasks', TaskViewSet)
+
+    urlpatterns = [
+        path('', include(router.urls))
+    ]
+    ```
+    El router es un objeto que permite crear urls para las vistas basadas en clases.
+
