@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders', # permite que el servidor acepte peticiones de otros dominios, por defecto solo acepta peticiones del mismo dominio.
     'rest_framework', # crea api rest practicamente al instante, con cierta seguridad por defecto.
+    'coreapi',
     'tasks',
 ]
 
@@ -130,3 +131,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000"
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+}

@@ -176,3 +176,58 @@ class TaskViewSet(viewsets.ModelViewSet):
     ```
     El router es un objeto que permite crear urls para las vistas basadas en clases.
 
+## ADD URLS TO MAIN URLS
+
+Para que las urls de la app sean accesibles desde el proyecto principal se debe agregar la url de la app en el archivo urls.py del proyecto principal.
+
+1. Agregar la url de la app en myproject/urls.py:
+
+```python
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('myapp.urls'))
+]
+```
+    La url de la app se agrega en la raiz del proyecto.
+    
+
+## DOCUMENTACIÓN DE LA API
+
+1. Instalar modulo para documentar la api:
+```bash
+# pip install drf-yasg # alternativa propuesta por copilot
+
+pip install coreapi
+```
+
+2. Agregar el modulo en la lista de INSTALLED_APPS en rest_api_django/settings.py:
+
+```python
+INSTALLED_APPS = [
+    ...
+    'rest_framework_swagger',
+    'coreapi',
+    ...
+]
+```
+
+3. Agregar la url de la documentación en myapp/urls.py:
+
+```python
+...
+from rest_framework.documentation import include_docs_urls
+...
+
+urlpatterns = [
+    ...
+    path('docs/', get_schema_view(
+        title="API",
+        description="API for all things …",
+        version="1.0.0"
+    ), name='openapi-schema'),
+    ...
+]
+```
