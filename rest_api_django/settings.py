@@ -129,7 +129,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configuracion de cors withe list
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://localhost:5173"
 ]
 
 REST_FRAMEWORK = {
