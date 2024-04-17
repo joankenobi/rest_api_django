@@ -59,7 +59,7 @@ Este modulo agrega los headers que son strings que indican quien puede conectars
 
     Agregar "corsheaders" en rest_api_django/settings.py en la lista de INSTALLED_APPS
 
-    Agregar "corsheaders" en rest_api_django/settings.py en la lista de MIDDLEWARE para mostrar las respuestar y debe ir antes de CommonMiddleware 'django.middleware.common.CommonMiddleware'
+    Agregar "corsheaders.middleware.CorsMiddleware" en rest_api_django/settings.py en la lista de MIDDLEWARE para mostrar las respuestar y debe ir antes de CommonMiddleware 'django.middleware.common.CommonMiddleware'
 
 8. agregar configuración de corsheaders en rest_api_django/settings.py:
 
