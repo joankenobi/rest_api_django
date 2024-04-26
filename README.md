@@ -208,7 +208,7 @@ pip install coreapi
 ```python
 INSTALLED_APPS = [
     ...
-    'rest_framework_swagger',
+    'rest_framework',
     'coreapi',
     ...
 ]
@@ -218,16 +218,27 @@ INSTALLED_APPS = [
 
 ```python
 ...
-from rest_framework.documentation import include_docs_urls
+    from rest_framework.documentation import include_docs_urls
 ...
 
 urlpatterns = [
     ...
-    path('docs/', get_schema_view(
-        title="API",
-        description="API for all things …",
-        version="1.0.0"
-    ), name='openapi-schema'),
+    # path('docs/', get_schema_view(
+    #     title="API",
+    #     description="API for all things …",
+    #     version="1.0.0"
+    # ), name='openapi-schema'), # alternativa propuesta por copilot
+    path('docs/', include_docs_urls(title='myapp API'))
     ...
+
 ]
+```
+
+4. Agregar autoschema en settings.py:
+
+```python
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+}
 ```
